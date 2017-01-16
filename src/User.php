@@ -40,7 +40,7 @@ class User {
     
     public function saveToDB(mysqli $connection) {
         if($this->id == -1) {
-            $insertInUsers = "INSERT INTO users(name, email, password) VALUES ('$this->email','$this->username','$this->hash_password');";
+            $insertInUsers = "INSERT INTO users(name, email, password) VALUES ('$this->username','$this->email','$this->hash_password');";
             
             if($connection->query($insertInUsers)) {
                 $this->id = $connection->insert_id;
@@ -114,16 +114,17 @@ class User {
     }
     
     static public function loadUserByEmail(mysqli $connection, $email) {
-        $loadUser = "SELECT FROM users WHERE email = '".$connection->real_escape_string($email)."';";
-        
+        $loadUser = "SELECT * FROM users WHERE email = '".$connection->real_escape_string($email)."';";
+
         $result = $connection->query($loadUser);
+      
         if($result && $result->num_rows == 1) {
             $row = $result->fetch_assoc();
             $user = new User();
             $user->id = $row['id'];
-            $user->setName($row['username']);
+            $user->setName($row['name']);
             $user->setEmail($row['email']);
-            $user->hash_password = $row['hash_password'];
+            $user->hash_password = $row['password'];
             
             return $user;    
         }

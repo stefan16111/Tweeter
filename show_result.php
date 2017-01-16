@@ -6,7 +6,7 @@ echo "Tworzenie user i wrzucanie go do BD";
 //$user1->setName('Jacek');
 //$user1->setEmail('jacek@wp.pl');
 //$user1->setPassword('jacek');
-//var_dump($user1->saveToDB($conn_twittern));
+//var_dump($user1->saveToDB($conn_twitter));
 
 //echo "pobieranie usera z BD";
 //$user = User::loadUserById($conn_twitter, 1);
@@ -28,5 +28,5 @@ echo "Tworzenie user i wrzucanie go do BD";
 //var_dump($user->delete($conn_twitter));
 //var_dump($user);
 
-$conn->close();
-$conn = null;
+$conn_twitter->close();
+$conn_twitter = null;

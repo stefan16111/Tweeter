@@ -8,10 +8,12 @@ if($_SERVER['REQUEST_METHOD'] = "POST") {
             && isset($_POST['password']) && strlen(trim($_POST['password'])) > 3) {       
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
+      
         $user = User::login($conn_twitter, $email, $password);
-        
+
         if($user) {
             $_SESSION['userId'] = $user->getId();
+            $_SESSION['userName'] = $user->getName();
             header('Location: index.php');
         }else{
             echo "niepoprawne logowanie";
@@ -23,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST") {
     <head>
     </head>
     </body>
-    Wszystkie wpisy zalogowanego uzytkownika
+    Zaloguj : 
         <form action="#" method="POST">
             <label>Email : </label>
             <input type="text" name="email"><br>
@@ -31,5 +33,6 @@ if($_SERVER['REQUEST_METHOD'] = "POST") {
             <input type="password" name="password"><br>
             <input type="submit" value="Wyslij">    
 </form>
+    <p>Rejestracja : <a href="register.php">Przejdz</a></p>
     </body>
 </html>
