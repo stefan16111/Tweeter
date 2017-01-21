@@ -54,7 +54,7 @@ if (!isset($_SESSION['userId'])) {
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <a href="show_tweet.php" style="text-decoration: none">
+                        <a href="show_tweet.php?tweetId=<?php echo $row->getId(); ?>" style="text-decoration: none">
                             <?php echo mb_strimwidth($row->getText(),0,30, "..."); ?></a>
                     </td>
                 </tr>
